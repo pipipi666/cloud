@@ -1,0 +1,19 @@
+.container {
+  margin: var(--gap-default) auto;
+  width: 900px;
+  max-width: 100%;
+  background-color: var(--default-light-color);
+}
+
+.container_default {
+  composes: container;
+  min-height: 704px;
+  padding: var(--gap-default);
+  border-radius: 12px 12px 0 0;
+}
+
+.container_form {
+  composes: container;
+  padding: var(--gap-xxl) var(--gap-layout) var(--gap-xxxl);
+  border-radius: 24px;
+}

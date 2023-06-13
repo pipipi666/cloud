@@ -1,4 +1,5 @@
 @import url("./assets/fonts/fonts.scss");
+@import url("./assets/styles/global.scss");
 
 *,
 *::before,
@@ -8,6 +9,7 @@
 
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -20,6 +22,7 @@ body {
 
 input,
 button,
+textarea,
 select {
   font: inherit;
 }
