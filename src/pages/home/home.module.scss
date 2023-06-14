@@ -1,4 +1,31 @@
+.info {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-default);
+  padding-bottom: var(--gap-default);
+  border-bottom: 1px solid var(--divider-color);
+
+  .avatar {
+    width: 80px;
+    min-width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--avatar-text);
+    background-color: var(--avatar-bg);
+    border-radius: 50%;
+    font: var(--text-xl);
+  }
+
+  .name {
+    margin-bottom: var(--gap-xs);
+    font: var(--text-l);
+  }
+}
+
 .inputs {
+  margin: var(--gap-default) 0 var(--gap-xl);
   width: 400px;
   max-width: 100%;
 }

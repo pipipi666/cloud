@@ -13,6 +13,7 @@
 }
 
 body {
+  margin: var(--gap-default);
   color: var(--text-main-color);
   background-color: var(--bg-main-color);
   font: var(--text-m-r);
