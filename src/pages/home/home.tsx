@@ -32,6 +32,7 @@ export const HomePage = () => {
             <MainInput
               label="Номер телефона"
               placeholder="+7 999 999-99-99"
+              id="field-phone"
               isLarge
               disabled
             />
@@ -40,13 +41,16 @@ export const HomePage = () => {
             <MainInput
               label="Email"
               placeholder="tim.jennings@example.com"
+              id="field-email"
               isLarge
               disabled
             />
           </li>
         </InputList>
       </div>
-      <MainButton onClick={handleClick}>Начать</MainButton>
+      <MainButton id="button-start" onClick={handleClick}>
+        Начать
+      </MainButton>
     </Container>
   );
 };

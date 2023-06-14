@@ -30,16 +30,23 @@ export const FormPage = () => {
           step === 1 ? (
             <StepAdvantages />
           ) : (
-            <MainInput label="About" tip="Tip" type="textarea" />
+            <MainInput
+              id="field-about"
+              label="About"
+              tip="Tip"
+              type="textarea"
+            />
           )
         ) : (
           <StepMain />
         )}
         <div className={styles.btns}>
-          <MainButton type="outline" onClick={handlePrevClick}>
+          <MainButton id="button-back" type="outline" onClick={handlePrevClick}>
             Назад
           </MainButton>
-          <MainButton onClick={handleNextClick}>Далее</MainButton>
+          <MainButton id="button-next" onClick={handleNextClick}>
+            Далее
+          </MainButton>
         </div>
       </form>
     </Container>

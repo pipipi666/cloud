@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import styles from "./main-input.module.scss";
 
 type TProps = {
+  id: string;
   type?: "text" | "textarea" | "select";
   placeholder?: string;
   label?: string;
@@ -12,6 +13,7 @@ type TProps = {
 };
 
 export const MainInput = ({
+  id,
   type,
   placeholder = "Placeholder",
   label,
@@ -25,7 +27,7 @@ export const MainInput = ({
       {label && <label>{label}</label>}
       {type === "select" ? (
         <div className={styles.select_wrapper}>
-          <select className={styles.select} defaultValue="default">
+          <select className={styles.select} defaultValue="default" id={id}>
             <option value="default" disabled>
               Не выбрано
             </option>
@@ -37,6 +39,7 @@ export const MainInput = ({
           className={styles.textarea}
           placeholder={placeholder}
           rows={3}
+          id={id}
           disabled={disabled}
         />
       ) : (
@@ -44,6 +47,7 @@ export const MainInput = ({
           type="text"
           className={isLarge ? styles.input_large : styles.input}
           placeholder={placeholder}
+          id={id}
           disabled={disabled}
         />
       )}

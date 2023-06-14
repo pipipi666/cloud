@@ -5,16 +5,16 @@ export const StepMain = () => {
   return (
     <InputList>
       <li>
-        <MainInput label="NickName" tip="Tip" />
+        <MainInput id="field-nickname" label="NickName" tip="Tip" />
       </li>
       <li>
-        <MainInput label="Name" tip="Tip" />
+        <MainInput id="field-name" label="Name" tip="Tip" />
       </li>
       <li>
-        <MainInput label="Surname" tip="Tip" />
+        <MainInput id="field-surname" label="Surname" tip="Tip" />
       </li>
       <li>
-        <MainInput label="Sex" tip="Tip" type="select">
+        <MainInput id="field-sex" label="Sex" tip="Tip" type="select">
           <option id="field-sex-option-man" value="man">
             man
           </option>

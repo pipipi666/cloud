@@ -26,17 +26,18 @@ export const StepAdvantages = () => {
         <p>Advantages</p>
         <ul className={styles.advantages_list}>
           <li className={styles.advantages}>
-            <MainInput />
+            <MainInput id="field-advantages-1" />
             <button
               className={styles.trash}
               onClick={handleDeleteClick}
+              id="button-remove-1"
               type="button"
             >
               <IconTrash />
             </button>
           </li>
         </ul>
-        <MainButton onClick={handleAddClick} type="square">
+        <MainButton id="button-add" onClick={handleAddClick} type="square">
           <IconPlus />
         </MainButton>
       </li>
