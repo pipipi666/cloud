@@ -32,3 +32,8 @@
   composes: input;
   resize: vertical;
 }
+
+.select {
+  composes: input;
+  color: inherit;
+}

@@ -1,7 +1,7 @@
 import styles from "./main-input.module.scss";
 
 type TProps = {
-  type?: "text" | "textarea";
+  type?: "text" | "textarea" | "select";
   placeholder?: string;
   label?: string;
   tip?: string;
@@ -9,7 +9,7 @@ type TProps = {
 };
 
 export const MainInput = ({
-  type = "text",
+  type,
   placeholder = "Placeholder",
   label,
   tip,
@@ -18,7 +18,15 @@ export const MainInput = ({
   return (
     <div className={styles.wrapper}>
       {label && <label>{label}</label>}
-      {type === "textarea" ? (
+      {type === "select" ? (
+        <select className={styles.select} defaultValue="default">
+          <option value="default" disabled>
+            Не выбрано
+          </option>
+          <option>man</option>
+          <option>woman</option>
+        </select>
+      ) : type === "textarea" ? (
         <textarea
           className={styles.textarea}
           placeholder={placeholder}
@@ -27,6 +35,7 @@ export const MainInput = ({
         />
       ) : (
         <input
+          type="text"
           className={styles.input}
           placeholder={placeholder}
           disabled={disabled}

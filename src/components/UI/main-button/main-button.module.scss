@@ -16,11 +16,10 @@
   color: var(--accent-color);
   background: transparent;
   padding: var(--gap-s) var(--gap-m);
+  border: 1px solid var(--accent-color);
 }
 
 .square {
-  composes: btn;
-  color: var(--accent-color);
-  background: transparent;
+  composes: outline;
   padding: var(--gap-s);
 }

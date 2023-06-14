@@ -12,3 +12,5 @@ export const LINKS = [
     link: "https://github.com/",
   },
 ];
+
+export const STEPS_COUNT = 3;
