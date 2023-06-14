@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xs);
+
+  .tip {
+    color: var(--placeholder-color);
+  }
+}
+
+.input {
+  position: relative;
+  padding: var(--gap-s);
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--corner-radius-default);
+
+  &::placeholder {
+    color: var(--placeholder-color);
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--accent-color);
+  }
+
+  &:disabled {
+    background-color: var(--input-bg-color);
+  }
+}
+
+.textarea {
+  composes: input;
+  resize: vertical;
+}
