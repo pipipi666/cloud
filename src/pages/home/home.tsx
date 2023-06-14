@@ -22,7 +22,7 @@ export const HomePage = () => {
       <div className={styles.info}>
         <div className={styles.avatar}>АИ</div>
         <div>
-          <p className={styles.name}>Иван Иванов</p>
+          <h2 className={styles.name}>Иван Иванов</h2>
           <LinkList links={LINKS} />
         </div>
       </div>
