@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import styles from "./main-input.module.scss";
 
 type TProps = {
@@ -5,6 +6,8 @@ type TProps = {
   placeholder?: string;
   label?: string;
   tip?: string;
+  isLarge?: boolean;
+  children?: ReactNode;
   disabled?: boolean;
 };
 
@@ -13,19 +16,22 @@ export const MainInput = ({
   placeholder = "Placeholder",
   label,
   tip,
+  children,
+  isLarge = false,
   disabled = false,
 }: TProps) => {
   return (
     <div className={styles.wrapper}>
       {label && <label>{label}</label>}
       {type === "select" ? (
-        <select className={styles.select} defaultValue="default">
-          <option value="default" disabled>
-            Не выбрано
-          </option>
-          <option>man</option>
-          <option>woman</option>
-        </select>
+        <div className={styles.select_wrapper}>
+          <select className={styles.select} defaultValue="default">
+            <option value="default" disabled>
+              Не выбрано
+            </option>
+            {children}
+          </select>
+        </div>
       ) : type === "textarea" ? (
         <textarea
           className={styles.textarea}
@@ -36,7 +42,7 @@ export const MainInput = ({
       ) : (
         <input
           type="text"
-          className={styles.input}
+          className={isLarge ? styles.input_large : styles.input}
           placeholder={placeholder}
           disabled={disabled}
         />

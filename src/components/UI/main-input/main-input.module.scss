@@ -10,6 +10,7 @@
 
 .input {
   position: relative;
+  width: 300px;
   padding: var(--gap-s);
   border: 1px solid var(--input-border-color);
   border-radius: var(--corner-radius-default);
@@ -28,12 +29,26 @@
   }
 }
 
+.input_large {
+  composes: input;
+  width: 400px;
+}
+
 .textarea {
   composes: input;
+  width: unset;
   resize: vertical;
+}
+.select_wrapper {
+  width: 300px;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--corner-radius-default);
 }
 
 .select {
   composes: input;
+  width: 298px;
+  border: 0;
   color: inherit;
+  border-right: var(--gap-s) solid transparent;
 }

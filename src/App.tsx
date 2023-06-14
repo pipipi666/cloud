@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.FORM} element={<FormPage />} />
+        <Route path={ROUTES.CREATE} element={<FormPage />} />
       </Routes>
     </BrowserRouter>
   );
