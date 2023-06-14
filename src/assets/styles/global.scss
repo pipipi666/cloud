@@ -26,7 +26,10 @@
 
   --corner-radius-default: 4px;
 
-  --text-s: 0.75rem;
-  --text-m: 0.875rem;
-  --text-l: 1.25rem;
+  --ff: "SB Sans Interface", sans-serif;
+
+  --text-s: 400 0.75rem/130% var(--ff);
+  --text-m-r: 400 0.875rem/140% var(--ff);
+  --text-m-b: 600 0.875rem/140% var(--ff);
+  --text-l: 600 1.25rem/130% var(--ff);
 }

@@ -15,7 +15,7 @@
 body {
   color: var(--text-main-color);
   background-color: var(--bg-main-color);
-  font-family: "SB Sans Interface", sans-serif;
+  font: var(--text-m-r);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

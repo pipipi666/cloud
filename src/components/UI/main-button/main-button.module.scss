@@ -1,0 +1,25 @@
+.btn {
+  border: 0;
+  border-radius: var(--gap-xxs);
+}
+
+.filled {
+  composes: btn;
+  color: var(--default-light-color);
+  background-color: var(--accent-color);
+  padding: 12px 16px;
+}
+
+.outline {
+  composes: btn;
+  color: var(--accent-color);
+  background: transparent;
+  padding: 12px 16px;
+}
+
+.square {
+  composes: btn;
+  color: var(--accent-color);
+  background: transparent;
+  padding: 12px;
+}
