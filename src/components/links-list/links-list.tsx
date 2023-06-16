@@ -1,5 +1,5 @@
 import styles from "./links-list.module.scss";
-import { MediaLink } from "../media-link/media-link";
+import { MediaLink } from "../UI/media-link/media-link";
 
 type TLink = {
   name: string;

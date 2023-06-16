@@ -1,29 +1,27 @@
 import { ChangeEvent } from "react";
-import styles from "./main-input.module.scss";
+import styles from "./textarea.module.scss";
 import { Field, Formik } from "formik";
 
 type TProps = {
   id: string;
   name: string;
   placeholder?: string;
-  isLarge?: boolean;
-  value?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  rows?: number;
   disabled?: boolean;
 };
 
-export const MainInput = ({
+export const Textarea = ({
   id,
   name,
   placeholder = "Placeholder",
   value,
   onChange,
-  isLarge = false,
-  disabled = false,
+  rows = 3,
+  disabled,
 }: TProps) => {
-  const initialValues = {
-    nickname: "",
-  };
+  const initialValues = {};
   return (
     <Formik
       initialValues={initialValues}
@@ -31,14 +29,14 @@ export const MainInput = ({
         console.log(values);
       }}
     >
-      <Field
-        type="text"
+      <textarea
+        className={styles.textarea}
         name={name}
-        className={isLarge ? styles.input_large : styles.input}
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        rows={rows}
         id={id}
+        onChange={onChange}
+        value={value}
         disabled={disabled}
       />
     </Formik>

@@ -1,9 +1,9 @@
-.input {
+.textarea {
   position: relative;
-  width: 300px;
   padding: var(--gap-s);
   border: 1px solid var(--input-border-color);
   border-radius: var(--corner-radius-default);
+  resize: vertical;
 
   &::placeholder {
     color: var(--placeholder-color);
@@ -17,9 +17,4 @@
   &:disabled {
     background-color: var(--input-bg-color);
   }
-}
-
-.input_large {
-  composes: input;
-  width: 400px;
 }

@@ -1,5 +1,5 @@
 import styles from "./media-link.module.scss";
-import { IconFolder } from "../icons/folder";
+import { IconFolder } from "../../icons/folder";
 
 type TProps = {
   name: string;

@@ -1,20 +1,29 @@
-import { useCallback } from "react";
+import { ChangeEvent, useCallback } from "react";
 import { useNavigate } from "react-router";
 import styles from "./home.module.scss";
-import { LINKS } from "../../utils/consts/mock";
-import { ROUTES } from "../../utils/consts/routes";
+import { useDispatch } from "react-redux";
+import { mainFormSet } from "services/slices/formSlice";
+import { ROUTES, LINKS, useAppSelector } from "utils";
 import {
   MainButton,
   MainInput,
   Container,
   InputList,
   LinkList,
-} from "../../components";
+  FormField,
+} from "components";
 
 export const HomePage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { phone, email } = useAppSelector((state) => state.formMain);
+
   const handleClick = useCallback(() => {
     navigate(ROUTES.CREATE);
+  }, []);
+
+  const onFormChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(mainFormSet({ name: e.target.name, value: e.target.value }));
   }, []);
 
   return (
@@ -29,22 +38,30 @@ export const HomePage = () => {
       <div className={styles.inputs}>
         <InputList>
           <li>
-            <MainInput
-              label="Номер телефона"
-              placeholder="+7 999 999-99-99"
-              id="field-phone"
-              isLarge
-              disabled
-            />
+            <FormField id="field-phone" label="Номер телефона">
+              <MainInput
+                name="phone"
+                placeholder="phone"
+                id="field-phone"
+                value={phone}
+                onChange={onFormChange}
+                isLarge
+                disabled
+              />
+            </FormField>
           </li>
           <li>
-            <MainInput
-              label="Email"
-              placeholder="tim.jennings@example.com"
-              id="field-email"
-              isLarge
-              disabled
-            />
+            <FormField id="field-email" label="Email">
+              <MainInput
+                name="email"
+                placeholder="email"
+                id="field-email"
+                value={email}
+                onChange={onFormChange}
+                isLarge
+                disabled
+              />
+            </FormField>
           </li>
         </InputList>
       </div>

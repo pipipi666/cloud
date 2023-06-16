@@ -2,8 +2,8 @@ import React from "react";
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/home/home";
-import { ROUTES } from "./utils/consts/routes";
 import { FormPage } from "./pages/form/form";
+import { ROUTES } from "./utils/routes";
 
 function App() {
   return (

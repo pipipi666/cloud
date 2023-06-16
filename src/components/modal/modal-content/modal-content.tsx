@@ -1,10 +1,7 @@
 import { useNavigate } from "react-router";
-import { MainButton } from "../../UI/main-button/main-button";
-import { IconCheck } from "../../icons/check";
-import { IconCross } from "../../icons/cross";
-import { ModalWrapper } from "../modal-wrapper/modal-wrapper";
+import { ModalWrapper, MainButton, IconCheck, IconCross } from "components";
 import styles from "./modal-content.module.scss";
-import { ROUTES } from "../../../utils/consts/routes";
+import { ROUTES } from "utils";
 
 type TProps = {
   isSuccess?: boolean;
