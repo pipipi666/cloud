@@ -1,6 +1,7 @@
 .btn {
   border: 0;
   border-radius: var(--corner-radius-default);
+  transition: all 0.5s;
   cursor: pointer;
 }
 
@@ -9,6 +10,13 @@
   color: var(--default-light-color);
   background-color: var(--accent-color);
   padding: var(--gap-s) var(--gap-m);
+
+  &:hover {
+    background-color: var(--accent-color-light);
+  }
+  &:active {
+    background-color: var(--accent-color-dark);
+  }
 }
 
 .outline {
@@ -17,6 +25,14 @@
   background: transparent;
   padding: var(--gap-s) var(--gap-m);
   border: 1px solid var(--accent-color);
+
+  &:hover {
+    color: var(--default-light-color);
+    background-color: var(--accent-color-light);
+  }
+  &:active {
+    background-color: var(--accent-color-dark);
+  }
 }
 
 .square {
@@ -24,4 +40,8 @@
   height: 44px;
   composes: outline;
   padding: var(--gap-s);
+
+  &:hover {
+    background-color: var(--accent-color-lighter);
+  }
 }

@@ -24,3 +24,8 @@
   composes: input;
   width: 400px;
 }
+
+.error {
+  composes: input;
+  border: 1px solid var(--error-color);
+}

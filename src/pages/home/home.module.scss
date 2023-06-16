@@ -22,6 +22,11 @@
     margin-bottom: var(--gap-xs);
     font: var(--text-l);
   }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 .inputs {
