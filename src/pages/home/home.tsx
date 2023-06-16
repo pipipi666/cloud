@@ -30,7 +30,7 @@ export const HomePage = () => {
     <Container>
       <div className={styles.info}>
         <div className={styles.avatar}>АИ</div>
-        <div>
+        <div className={styles.links}>
           <h2 className={styles.name}>Иван Иванов</h2>
           <LinkList links={LINKS} />
         </div>
