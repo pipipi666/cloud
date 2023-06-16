@@ -18,6 +18,10 @@
     display: flex;
     justify-content: space-between;
   }
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: var(--gap-s);
+  }
 }
 
 .step {

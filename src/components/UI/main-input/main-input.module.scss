@@ -1,6 +1,7 @@
 .input {
   position: relative;
   width: 300px;
+  max-width: 100%;
   padding: var(--gap-s);
   border: 1px solid var(--input-border-color);
   border-radius: var(--corner-radius-default);

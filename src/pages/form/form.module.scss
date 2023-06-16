@@ -2,4 +2,8 @@
   margin-top: var(--gap-xxl);
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    margin-top: var(--gap-s);
+  }
 }
