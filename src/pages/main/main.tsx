@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback } from "react";
 import { useNavigate } from "react-router";
-import styles from "./home.module.scss";
+import styles from "./main.module.scss";
 import { useDispatch } from "react-redux";
 import { ROUTES, useAppSelector } from "utils";
 import {
@@ -14,7 +14,7 @@ import { UserInfo } from "components/user-info/user-info";
 import { userFormSet } from "services/slices/userSlice";
 import { PhoneInput } from "components/UI/phone-input/phone-input";
 
-export const HomePage = () => {
+export const MainPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { phone, email } = useAppSelector((state) => state.user.info);

@@ -15,7 +15,7 @@ export const ModalContent = ({ isSuccess = false }: TProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(ROUTES.HOME);
+    navigate(ROUTES.MAIN);
     dispatch(reset());
   };
 

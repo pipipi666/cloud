@@ -45,7 +45,7 @@ export const FormPage = () => {
   }, [step]);
 
   const handleSuccessClick = useCallback(() => {
-    navigate(ROUTES.HOME);
+    navigate(ROUTES.MAIN);
   }, [step]);
 
   const onTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
