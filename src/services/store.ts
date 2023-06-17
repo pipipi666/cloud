@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import formReducer from "./slices/formSlice";
+import userReducer from "./slices/userSlice";
 
 export const store = configureStore({
-  reducer: formReducer,
+  reducer: {
+    form: formReducer,
+    user: userReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

@@ -3,8 +3,6 @@ import { TFormState } from "utils/types";
 
 export const initialState: TFormState = {
   formMain: {
-    phone: "+79999999999",
-    email: "tim.jennings@example.com",
     nickname: "",
     name: "",
     surname: "",

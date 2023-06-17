@@ -18,9 +18,9 @@ import {
 
 export const StepAdvantages = () => {
   const dispatch = useDispatch();
-  const advantages = useAppSelector((state) => state.formAdvantages);
-  const checkSelected = useAppSelector((state) => state.formCheckboxes);
-  const radioSelected = useAppSelector((state) => state.formMain.radio);
+  const advantages = useAppSelector((state) => state.form.formAdvantages);
+  const checkSelected = useAppSelector((state) => state.form.formCheckboxes);
+  const radioSelected = useAppSelector((state) => state.form.formMain.radio);
 
   const checkboxes = useMemo(
     () =>

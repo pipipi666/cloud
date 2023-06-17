@@ -2,39 +2,33 @@ import { ChangeEvent, useCallback } from "react";
 import { useNavigate } from "react-router";
 import styles from "./home.module.scss";
 import { useDispatch } from "react-redux";
-import { mainFormSet } from "services/slices/formSlice";
-import { ROUTES, LINKS, useAppSelector } from "utils";
+import { ROUTES, useAppSelector } from "utils";
 import {
   MainButton,
   MainInput,
   Container,
   InputList,
-  LinkList,
   FormField,
 } from "components";
+import { UserInfo } from "components/user-info/user-info";
+import { userFormSet } from "services/slices/userSlice";
 
 export const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { phone, email } = useAppSelector((state) => state.formMain);
+  const { phone, email } = useAppSelector((state) => state.user.info);
 
   const handleClick = useCallback(() => {
     navigate(ROUTES.CREATE);
   }, []);
 
   const onFormChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(mainFormSet({ name: e.target.name, value: e.target.value }));
+    dispatch(userFormSet({ name: e.target.name, value: e.target.value }));
   }, []);
 
   return (
     <Container>
-      <div className={styles.info}>
-        <div className={styles.avatar}>АИ</div>
-        <div className={styles.links}>
-          <h2 className={styles.name}>Иван Иванов</h2>
-          <LinkList links={LINKS} />
-        </div>
-      </div>
+      <UserInfo />
       <div className={styles.inputs}>
         <InputList>
           <li>
@@ -46,7 +40,6 @@ export const HomePage = () => {
                 value={phone}
                 onChange={onFormChange}
                 isLarge
-                disabled
               />
             </FormField>
           </li>
@@ -59,7 +52,6 @@ export const HomePage = () => {
                 value={email}
                 onChange={onFormChange}
                 isLarge
-                disabled
               />
             </FormField>
           </li>

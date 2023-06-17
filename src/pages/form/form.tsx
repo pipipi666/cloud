@@ -21,7 +21,7 @@ export const FormPage = () => {
   const [isModal, setIsModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const about = useAppSelector((state) => state.formMain.about);
+  const about = useAppSelector((state) => state.form.formMain.about);
 
   const initialValues = {
     nickname: "",

@@ -1,21 +1,15 @@
 import styles from "./links-list.module.scss";
 import { MediaLink } from "../UI/media-link/media-link";
+import { useAppSelector } from "utils";
 
-type TLink = {
-  name: string;
-  link: string;
-};
+export const LinkList = () => {
+  const { media } = useAppSelector((state) => state.user);
 
-type TProps = {
-  links: TLink[];
-};
-
-export const LinkList = ({ links }: TProps) => {
   return (
     <ul className={styles.list}>
-      {links.map((link) => (
+      {media.map((link) => (
         <li key={link.name}>
-          <MediaLink name={link.name} link={link.link} />
+          <MediaLink name={link.name} link={link.url} />
         </li>
       ))}
     </ul>

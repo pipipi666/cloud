@@ -9,7 +9,7 @@ import { FormField } from "components/UI/field/form-field";
 export const StepMain = () => {
   const dispatch = useDispatch();
   const { nickname, name, surname, sex } = useAppSelector(
-    (state) => state.formMain
+    (state) => state.form.formMain
   );
 
   const onFormChange = (e: ChangeEvent<HTMLInputElement>) => {
