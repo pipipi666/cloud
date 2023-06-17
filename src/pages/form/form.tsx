@@ -66,11 +66,16 @@ export const FormPage = () => {
             {step === 1 ? (
               <StepAdvantages />
             ) : step === 2 ? (
-              <FormField id="field-about" label="About" tip="Tip">
+              <FormField
+                id="field-about"
+                label="About"
+                tip="Maximum 200 characters"
+              >
                 <Textarea
                   id="field-about"
                   name="about"
                   value={about}
+                  placeholder="Tell about yourself"
                   onChange={onTextareaChange}
                 />
               </FormField>

@@ -92,6 +92,7 @@ export const StepAdvantages = () => {
                   name={name}
                   onChange={onAdvChange}
                   value={item}
+                  placeholder="Advantage"
                 />
                 <button
                   className={styles.trash}

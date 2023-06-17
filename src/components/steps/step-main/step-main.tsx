@@ -23,37 +23,52 @@ export const StepMain = () => {
   return (
     <InputList>
       <li>
-        <FormField id="field-nickname" label="NickName" tip="Tip">
+        <FormField
+          id="field-nickname"
+          label="NickName"
+          tip="Letters and numbers up to 30 characters"
+        >
           <MainInput
             id="field-nickname"
             name="nickname"
             value={nickname}
+            placeholder="NickName"
             onChange={onFormChange}
           />
         </FormField>
       </li>
       <li>
-        <FormField id="field-name" label="Name" tip="Tip">
+        <FormField
+          id="field-name"
+          label="Name"
+          tip="Letters up to 50 characters"
+        >
           <MainInput
             id="field-name"
             name="name"
             value={name}
+            placeholder="Name"
             onChange={onFormChange}
           />
         </FormField>
       </li>
       <li>
-        <FormField id="field-surname" label="Surname" tip="Tip">
+        <FormField
+          id="field-surname"
+          label="Surname"
+          tip="Letters up to 50 characters"
+        >
           <MainInput
             id="field-surname"
             name="surname"
             value={surname}
+            placeholder="Surname"
             onChange={onFormChange}
           />
         </FormField>
       </li>
       <li>
-        <FormField id="field-sex" label="Sex" tip="Tip">
+        <FormField id="field-sex" label="Sex" tip="Choose your sex">
           <Select
             id="field-sex"
             name="sex"

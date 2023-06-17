@@ -12,6 +12,7 @@ import {
 } from "components";
 import { UserInfo } from "components/user-info/user-info";
 import { userFormSet } from "services/slices/userSlice";
+import { PhoneInput } from "components/UI/phone-input/phone-input";
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -33,19 +34,18 @@ export const HomePage = () => {
         <InputList>
           <li>
             <FormField id="field-phone" label="Номер телефона">
-              <MainInput
+              <PhoneInput
                 name="phone"
-                placeholder="phone"
                 id="field-phone"
                 value={phone}
                 onChange={onFormChange}
-                isLarge
               />
             </FormField>
           </li>
           <li>
             <FormField id="field-email" label="Email">
               <MainInput
+                type="email"
                 name="email"
                 placeholder="email"
                 id="field-email"

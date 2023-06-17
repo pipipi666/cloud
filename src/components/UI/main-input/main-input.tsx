@@ -4,6 +4,7 @@ import { Field, Formik } from "formik";
 
 type TProps = {
   id: string;
+  type?: string;
   name: string;
   placeholder?: string;
   isLarge?: boolean;
@@ -17,6 +18,7 @@ export const MainInput = ({
   name,
   placeholder = "Placeholder",
   value,
+  type = "text",
   onChange,
   isLarge = false,
   disabled = false,
@@ -32,7 +34,7 @@ export const MainInput = ({
       }}
     >
       <Field
-        type="text"
+        type={type}
         name={name}
         className={isLarge ? styles.input_large : styles.input}
         placeholder={placeholder}
