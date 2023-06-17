@@ -4,12 +4,14 @@ import styles from "./modal-content.module.scss";
 import { ROUTES } from "utils";
 import { useDispatch } from "react-redux";
 import { reset } from "services/slices/formSlice";
+import * as ReactDOM from "react-dom";
 
 type TProps = {
   isSuccess?: boolean;
 };
 
 export const ModalContent = ({ isSuccess = false }: TProps) => {
+  const modalRoot = document.getElementById("root")!;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick = () => {
@@ -17,7 +19,7 @@ export const ModalContent = ({ isSuccess = false }: TProps) => {
     dispatch(reset());
   };
 
-  return (
+  return ReactDOM.createPortal(
     <ModalWrapper>
       {isSuccess ? (
         <h2 className={styles.title}>Форма успешно отправлена</h2>
@@ -49,6 +51,7 @@ export const ModalContent = ({ isSuccess = false }: TProps) => {
           </MainButton>
         </div>
       )}
-    </ModalWrapper>
+    </ModalWrapper>,
+    modalRoot
   );
 };
