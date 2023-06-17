@@ -2,8 +2,7 @@ import styles from "./form.module.scss";
 import { useNavigate } from "react-router";
 import { ChangeEvent, useCallback, useState } from "react";
 import { Formik, Form } from "formik";
-import { useDispatch } from "react-redux";
-import { mainFormSet } from "services/slices/formSlice";
+import { fetchForm, mainFormSet } from "services/slices/formSlice";
 import { ROUTES, useAppSelector } from "utils";
 import {
   Container,
@@ -15,13 +14,14 @@ import {
   FormField,
   Textarea,
 } from "components";
+import { useAppDispatch } from "utils/hooks";
 
 export const FormPage = () => {
   const [step, setStep] = useState(0);
-  const [isModal, setIsModal] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const about = useAppSelector((state) => state.form.formMain.about);
+  const { success, failed, request } = useAppSelector((state) => state.form);
 
   const initialValues = {
     nickname: "",
@@ -39,8 +39,9 @@ export const FormPage = () => {
   }, [step]);
 
   const handleNextClick = useCallback(() => {
-    if (step === 2) setIsModal(true);
-    else setStep(step + 1);
+    if (step === 2) {
+      dispatch(fetchForm());
+    } else setStep(step + 1);
   }, [step]);
 
   const handleSuccessClick = useCallback(() => {
@@ -95,7 +96,7 @@ export const FormPage = () => {
           </Form>
         </Formik>
       </Container>
-      {isModal && <ModalContent />}
+      {!request && (success || failed) && <ModalContent isSuccess={success} />}
     </>
   );
 };

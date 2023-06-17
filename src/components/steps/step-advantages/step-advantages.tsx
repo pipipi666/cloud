@@ -18,17 +18,16 @@ import {
 
 export const StepAdvantages = () => {
   const dispatch = useDispatch();
-  const advantages = useAppSelector((state) => state.form.formAdvantages);
-  const checkSelected = useAppSelector((state) => state.form.formCheckboxes);
+  const { advantages, checks } = useAppSelector((state) => state.form);
   const radioSelected = useAppSelector((state) => state.form.formMain.radio);
 
   const checkboxes = useMemo(
     () =>
       INPUTS_CHECKBOX.map((x) => ({
         ...x,
-        checked: checkSelected.includes(x.name),
+        checked: checks.includes(x.name),
       })),
-    [checkSelected]
+    [checks]
   );
 
   const radios = useMemo(
@@ -66,12 +65,12 @@ export const StepAdvantages = () => {
       dispatch(
         checkboxesFormSet(
           e.target.checked
-            ? [...checkSelected, e.target.name]
-            : [...checkSelected.filter((x) => x !== e.target.name)]
+            ? [...checks, e.target.name]
+            : [...checks.filter((x) => x !== e.target.name)]
         )
       );
     },
-    [checkSelected]
+    [checks]
   );
 
   const onRadioChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {

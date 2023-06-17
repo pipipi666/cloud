@@ -2,15 +2,19 @@ import { useNavigate } from "react-router";
 import { ModalWrapper, MainButton, IconCheck, IconCross } from "components";
 import styles from "./modal-content.module.scss";
 import { ROUTES } from "utils";
+import { useDispatch } from "react-redux";
+import { reset } from "services/slices/formSlice";
 
 type TProps = {
   isSuccess?: boolean;
 };
 
 export const ModalContent = ({ isSuccess = false }: TProps) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(ROUTES.HOME);
+    dispatch(reset());
   };
 
   return (
