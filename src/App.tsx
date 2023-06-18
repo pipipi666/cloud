@@ -3,7 +3,7 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MainPage } from "./pages/main/main";
 import { FormPage } from "./pages/form/form";
-import { ROUTES } from "./utils/routes";
+import { ROUTES } from "./utils";
 
 function App() {
   return (

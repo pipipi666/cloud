@@ -1,9 +1,8 @@
 import styles from "./form.module.scss";
 import { useNavigate } from "react-router";
 import { ChangeEvent, useCallback, useState } from "react";
-import { Formik, Form } from "formik";
-import { fetchForm, mainFormSet } from "services/slices/formSlice";
-import { ROUTES, useAppSelector } from "utils";
+import { fetchForm, mainFormSet, setError } from "services/slices/formSlice";
+import { useAppSelector, useAppDispatch, SCHEMA } from "utils";
 import {
   Container,
   MainButton,
@@ -14,39 +13,71 @@ import {
   FormField,
   Textarea,
 } from "components";
-import { useAppDispatch } from "utils/hooks";
 
 export const FormPage = () => {
   const [step, setStep] = useState(0);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const about = useAppSelector((state) => state.form.formMain.about);
-  const { success, failed, request } = useAppSelector((state) => state.form);
-
-  const initialValues = {
-    nickname: "",
-    name: "",
-    surname: "",
-    sex: "",
-    checkbox: "",
-    radio: "",
-    about: "",
-  };
+  const { about, nickname, name, surname, sex, radio } = useAppSelector(
+    (state) => state.form.formMain
+  );
+  const { errors, advantages, success, failed, request } = useAppSelector(
+    (state) => state.form
+  );
 
   const handlePrevClick = useCallback(() => {
-    if (!step) navigate(-1);
-    else setStep(step - 1);
+    step ? setStep(step - 1) : navigate(-1);
   }, [step]);
 
-  const handleNextClick = useCallback(() => {
-    if (step === 2) {
-      dispatch(fetchForm());
-    } else setStep(step + 1);
-  }, [step]);
+  const check = async (schema, value) => {
+    const res = await schema.isValid(value);
+    return res;
+  };
 
-  const handleSuccessClick = useCallback(() => {
-    navigate(ROUTES.MAIN);
-  }, [step]);
+  const handleNextClick = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (step === 2) return;
+    if (step === 0) {
+      if (!(await check(SCHEMA.NICKNAME, nickname))) {
+        dispatch(setError({ name: "nickname", value: true }));
+        return;
+      }
+      if (!(await check(SCHEMA.NAME, name))) {
+        dispatch(setError({ name: "name", value: true }));
+        return;
+      }
+      if (!(await check(SCHEMA.SURNAME, surname))) {
+        dispatch(setError({ name: "surname", value: true }));
+        return;
+      }
+      if (!(await check(SCHEMA.SEX, sex))) {
+        dispatch(setError({ name: "sex", value: true }));
+        return;
+      }
+    } else if (step === 1) {
+      if (!(await check(SCHEMA.ADVANTAGES, advantages))) {
+        dispatch(setError({ name: "advantages", value: true }));
+        return;
+      }
+      if (!(await check(SCHEMA.RADIO, radio))) {
+        dispatch(setError({ name: "radio", value: true }));
+        return;
+      }
+    }
+    setStep(step + 1);
+  };
+
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const res = await SCHEMA.ABOUT.isValid(about);
+      res
+        ? dispatch(fetchForm())
+        : dispatch(setError({ name: "about", value: true }));
+    },
+    [step, about]
+  );
 
   const onTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     dispatch(mainFormSet({ name: e.target.name, value: e.target.value }));
@@ -55,51 +86,53 @@ export const FormPage = () => {
   return (
     <>
       <Container type="form">
-        <Formik
-          initialValues={initialValues}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
-        >
-          <Form>
-            <Stepper step={step} />
-            {step === 1 ? (
-              <StepAdvantages />
-            ) : step === 2 ? (
-              <FormField
+        <form onSubmit={handleSubmit}>
+          <Stepper step={step} />
+          {step === 1 ? (
+            <StepAdvantages />
+          ) : step === 2 ? (
+            <FormField
+              id="field-about"
+              label="About"
+              tip="Maximum 200 characters"
+              errorMessage="Field should contain up to 200 characters"
+              error={errors.about}
+            >
+              <Textarea
                 id="field-about"
-                label="About"
-                tip="Maximum 200 characters"
-              >
-                <Textarea
-                  id="field-about"
-                  name="about"
-                  value={about}
-                  placeholder="Tell about yourself"
-                  onChange={onTextareaChange}
-                />
-              </FormField>
-            ) : (
-              <StepMain />
-            )}
-            <div className={styles.btns}>
-              <MainButton
-                id="button-back"
-                type="outline"
-                onClick={handlePrevClick}
-              >
-                Назад
+                name="about"
+                value={about}
+                placeholder="Tell about yourself"
+                onChange={onTextareaChange}
+                error={errors.about}
+              />
+            </FormField>
+          ) : (
+            <StepMain />
+          )}
+          <div className={styles.btns}>
+            <MainButton
+              id="button-back"
+              type="outline"
+              onClick={handlePrevClick}
+            >
+              Назад
+            </MainButton>
+            {step === 2 ? (
+              <MainButton id="button-send" btnType="submit">
+                Отправить
               </MainButton>
+            ) : (
               <MainButton
                 id="button-next"
                 onClick={handleNextClick}
-                btnType={step === 2 ? "submit" : "button"}
+                btnType="button"
               >
                 Далее
               </MainButton>
-            </div>
-          </Form>
-        </Formik>
+            )}
+          </div>
+        </form>
       </Container>
       {!request && (success || failed) && <ModalContent isSuccess={success} />}
     </>

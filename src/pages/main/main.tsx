@@ -13,15 +13,24 @@ import {
 import { UserInfo } from "components/user-info/user-info";
 import { userFormSet } from "services/slices/userSlice";
 import { PhoneInput } from "components/UI/phone-input/phone-input";
+import { setError } from "services/slices/formSlice";
+import * as yup from "yup";
 
 export const MainPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { phone, email } = useAppSelector((state) => state.user.info);
+  const { errors } = useAppSelector((state) => state.form);
+  const emailSchema = yup.string().required().email();
 
-  const handleClick = useCallback(() => {
+  const handleClick = useCallback(async () => {
+    const res = await emailSchema.isValid(email);
+    if (!res) {
+      dispatch(setError({ name: "email", value: true }));
+      return;
+    }
     navigate(ROUTES.CREATE);
-  }, []);
+  }, [email]);
 
   const onFormChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     dispatch(userFormSet({ name: e.target.name, value: e.target.value }));
@@ -39,6 +48,7 @@ export const MainPage = () => {
                 id="field-phone"
                 value={phone}
                 onChange={onFormChange}
+                disabled
               />
             </FormField>
           </li>
@@ -50,8 +60,10 @@ export const MainPage = () => {
                 placeholder="email"
                 id="field-email"
                 value={email}
-                onChange={onFormChange}
+                onInput={onFormChange}
+                error={errors.email}
                 isLarge
+                disabled
               />
             </FormField>
           </li>

@@ -1,4 +1,4 @@
-import { STEPS_COUNT } from "utils/consts";
+import { STEPS_COUNT } from "utils";
 import { IconCheck } from "../icons/check";
 import styles from "./stepper.module.scss";
 

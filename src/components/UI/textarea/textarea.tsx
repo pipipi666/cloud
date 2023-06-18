@@ -1,6 +1,5 @@
 import { ChangeEvent } from "react";
 import styles from "./textarea.module.scss";
-import { Field, Formik } from "formik";
 
 type TProps = {
   id: string;
@@ -10,6 +9,7 @@ type TProps = {
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   rows?: number;
   disabled?: boolean;
+  error: boolean;
 };
 
 export const Textarea = ({
@@ -19,18 +19,13 @@ export const Textarea = ({
   value,
   onChange,
   rows = 3,
+  error,
   disabled,
 }: TProps) => {
-  const initialValues = {};
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-    >
+    <div className={styles.wrapper}>
       <textarea
-        className={styles.textarea}
+        className={error ? styles.error : styles.textarea}
         name={name}
         placeholder={placeholder}
         rows={rows}
@@ -39,6 +34,7 @@ export const Textarea = ({
         value={value}
         disabled={disabled}
       />
-    </Formik>
+      <div className={styles.counter}>{value.trim().length}</div>
+    </div>
   );
 };

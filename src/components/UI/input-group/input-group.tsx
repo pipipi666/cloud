@@ -23,6 +23,7 @@ export const InputGroup = ({ type, title, items, onChange }: TProps) => {
         {items.map((item) => (
           <li className={styles.item} key={item.id}>
             <input
+              id={item.id}
               type={type}
               name={item.name}
               value={item.value}

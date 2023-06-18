@@ -2,6 +2,10 @@ interface IForm {
   [name: string]: string;
 }
 
+interface IError {
+  [name: string]: boolean;
+}
+
 type TLink = {
   name: string;
   url: string;
@@ -14,6 +18,7 @@ export type TFormState = {
   request: boolean;
   failed: boolean;
   success: boolean;
+  errors: IError;
 };
 
 export type TUserState = {

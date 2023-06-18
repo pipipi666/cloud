@@ -6,14 +6,24 @@ type TProps = {
   label: string;
   tip?: string;
   children: ReactNode;
+  errorMessage?: string;
+  error?: boolean;
 };
 
-export const FormField = ({ id, label, tip, children }: TProps) => {
+export const FormField = ({
+  id,
+  label,
+  tip,
+  children,
+  error,
+  errorMessage,
+}: TProps) => {
   return (
     <div className={styles.wrapper}>
       {label && <label htmlFor={id}>{label}</label>}
       {children}
-      {tip && <p className={styles.tip}>{tip}</p>}
+      {tip && !error && <p className={styles.tip}>{tip}</p>}
+      {error && <p className={styles.error}>{errorMessage}</p>}
     </div>
   );
 };

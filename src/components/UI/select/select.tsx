@@ -8,9 +8,17 @@ type TProps = {
   children: ReactNode;
   value?: string;
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  error: boolean;
 };
 
-export const Select = ({ id, name, children, value, onChange }: TProps) => {
+export const Select = ({
+  id,
+  name,
+  children,
+  value,
+  onChange,
+  error,
+}: TProps) => {
   const initialValues = {};
   return (
     <Formik
@@ -19,7 +27,7 @@ export const Select = ({ id, name, children, value, onChange }: TProps) => {
         console.log(values);
       }}
     >
-      <div className={styles.select_wrapper}>
+      <div className={error ? styles.error : styles.select_wrapper}>
         <select
           className={styles.select}
           onChange={onChange}

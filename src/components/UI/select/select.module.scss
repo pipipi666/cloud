@@ -14,3 +14,8 @@
     border-right: var(--gap-s) solid transparent;
   }
 }
+
+.error {
+  composes: select_wrapper;
+  border: 1px solid var(--error-color);
+}

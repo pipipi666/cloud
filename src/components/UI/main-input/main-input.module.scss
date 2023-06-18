@@ -29,3 +29,8 @@
   composes: input;
   border: 1px solid var(--error-color);
 }
+
+.input_large_error {
+  composes: input_large;
+  border: 1px solid var(--error-color);
+}

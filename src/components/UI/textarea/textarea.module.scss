@@ -1,5 +1,10 @@
+.wrapper {
+  position: relative;
+}
+
 .textarea {
   position: relative;
+  width: 100%;
   padding: var(--gap-s);
   border: 1px solid var(--input-border-color);
   border-radius: var(--corner-radius-default);
@@ -17,4 +22,16 @@
   &:disabled {
     background-color: var(--input-bg-color);
   }
+}
+
+.error {
+  composes: textarea;
+  border: 1px solid var(--error-color);
+}
+
+.counter {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: var(--placeholder-color);
 }

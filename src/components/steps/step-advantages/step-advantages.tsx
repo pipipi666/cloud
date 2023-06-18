@@ -1,12 +1,12 @@
 import styles from "./step-advantages.module.scss";
 import { ChangeEvent, useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
+import { INPUTS_CHECKBOX, INPUTS_RADIO, useAppSelector } from "utils";
 import {
   advantagesFormSet,
   checkboxesFormSet,
   mainFormSet,
 } from "services/slices/formSlice";
-import { INPUTS_CHECKBOX, INPUTS_RADIO, useAppSelector } from "utils";
 import {
   MainInput,
   InputList,
@@ -20,6 +20,7 @@ export const StepAdvantages = () => {
   const dispatch = useDispatch();
   const { advantages, checks } = useAppSelector((state) => state.form);
   const radioSelected = useAppSelector((state) => state.form.formMain.radio);
+  const { errors } = useAppSelector((state) => state.form);
 
   const checkboxes = useMemo(
     () =>
@@ -39,13 +40,13 @@ export const StepAdvantages = () => {
     [radioSelected]
   );
 
-  const handleAddClick = () => {
+  const handleAddClick = useCallback(() => {
     dispatch(advantagesFormSet([...advantages, ""]));
-  };
+  }, [advantages]);
 
   const handleDeleteClick = useCallback(
     (index: number) => {
-      dispatch(advantagesFormSet(advantages.filter((x, ind) => ind !== index)));
+      dispatch(advantagesFormSet(advantages.filter((_, ind) => ind !== index)));
     },
     [advantages]
   );
@@ -90,14 +91,15 @@ export const StepAdvantages = () => {
                 <MainInput
                   id={id}
                   name={name}
-                  onChange={onAdvChange}
+                  onInput={onAdvChange}
                   value={item}
                   placeholder="Advantage"
+                  error={errors.advantages}
                 />
                 <button
                   className={styles.trash}
                   onClick={() => handleDeleteClick(index)}
-                  id="button-remove-1"
+                  id={`button-remove-${index + 1}`}
                   type="button"
                 >
                   <IconTrash />

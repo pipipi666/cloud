@@ -38,6 +38,14 @@ export const initialState: TFormState = {
   request: false,
   failed: false,
   success: false,
+  errors: {
+    nickname: false,
+    name: false,
+    surname: false,
+    sex: false,
+    about: false,
+    advantages: false,
+  },
 };
 
 const formSlice = createSlice({
@@ -46,17 +54,25 @@ const formSlice = createSlice({
   reducers: {
     mainFormSet: (state, action) => {
       state.formMain[action.payload.name] = action.payload.value;
+      state.errors[action.payload.name] = false;
     },
     advantagesFormSet: (state, action) => {
       state.advantages = action.payload;
+      state.errors.advantages = false;
     },
     checkboxesFormSet: (state, action) => {
       state.checks = action.payload;
     },
     reset: (state) => {
+      state.formMain = { ...initialState.formMain };
+      state.advantages = [...initialState.advantages];
       state.request = false;
       state.failed = false;
       state.success = false;
+      state.checks = [];
+    },
+    setError: (state, action) => {
+      state.errors[action.payload.name] = action.payload.value;
     },
   },
   extraReducers: (builder) => {
@@ -78,7 +94,12 @@ const formSlice = createSlice({
   },
 });
 
-export const { mainFormSet, advantagesFormSet, checkboxesFormSet, reset } =
-  formSlice.actions;
+export const {
+  mainFormSet,
+  advantagesFormSet,
+  checkboxesFormSet,
+  reset,
+  setError,
+} = formSlice.actions;
 
 export default formSlice.reducer;

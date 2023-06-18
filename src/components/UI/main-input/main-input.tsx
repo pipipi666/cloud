@@ -1,6 +1,5 @@
 import { ChangeEvent } from "react";
 import styles from "./main-input.module.scss";
-import { Field, Formik } from "formik";
 
 type TProps = {
   id: string;
@@ -9,7 +8,8 @@ type TProps = {
   placeholder?: string;
   isLarge?: boolean;
   value?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onInput: (e: ChangeEvent<HTMLInputElement>) => void;
+  error: boolean;
   disabled?: boolean;
 };
 
@@ -19,30 +19,29 @@ export const MainInput = ({
   placeholder = "Placeholder",
   value,
   type = "text",
-  onChange,
+  onInput,
+  error,
   isLarge = false,
   disabled = false,
 }: TProps) => {
-  const initialValues = {
-    nickname: "",
-  };
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-    >
-      <Field
-        type={type}
-        name={name}
-        className={isLarge ? styles.input_large : styles.input}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        id={id}
-        disabled={disabled}
-      />
-    </Formik>
+    <input
+      id={id}
+      type={type}
+      name={name}
+      className={
+        error
+          ? isLarge
+            ? styles.input_large_error
+            : styles.error
+          : isLarge
+          ? styles.input_large
+          : styles.input
+      }
+      placeholder={placeholder}
+      value={value}
+      onInput={onInput}
+      disabled={disabled}
+    />
   );
 };
