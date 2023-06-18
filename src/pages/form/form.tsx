@@ -1,6 +1,6 @@
 import styles from "./form.module.scss";
 import { useNavigate } from "react-router";
-import { ChangeEvent, FormEventHandler, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { fetchForm, mainFormSet, setError } from "services/slices/formSlice";
 import { useAppSelector, useAppDispatch, SCHEMA } from "utils";
 import {
@@ -35,7 +35,7 @@ export const FormPage = () => {
     return res;
   };
 
-  const handleNextClick = async (e: Event) => {
+  const handleNextClick = async (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     if (step === 2) return;
@@ -70,7 +70,8 @@ export const FormPage = () => {
   };
 
   const handleSubmit = useCallback(
-    async (e: FormEventHandler<HTMLFormElement>) => {
+    async (e) => {
+      e.preventDefault();
       const res = await SCHEMA.ABOUT.isValid(about);
       res
         ? dispatch(fetchForm())
@@ -86,7 +87,7 @@ export const FormPage = () => {
   return (
     <>
       <Container type="form">
-        <form onSubmit={() => handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Stepper step={step} />
           {step === 1 ? (
             <StepAdvantages />
