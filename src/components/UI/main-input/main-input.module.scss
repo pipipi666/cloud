@@ -1,0 +1,36 @@
+.input {
+  position: relative;
+  width: 300px;
+  max-width: 100%;
+  padding: var(--gap-s);
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--corner-radius-default);
+
+  &::placeholder {
+    color: var(--placeholder-color);
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--accent-color);
+  }
+
+  &:disabled {
+    background-color: var(--input-bg-color);
+  }
+}
+
+.input_large {
+  composes: input;
+  width: 400px;
+}
+
+.error {
+  composes: input;
+  border: 1px solid var(--error-color);
+}
+
+.input_large_error {
+  composes: input_large;
+  border: 1px solid var(--error-color);
+}

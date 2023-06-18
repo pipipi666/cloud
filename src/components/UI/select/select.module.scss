@@ -1,0 +1,21 @@
+.select_wrapper {
+  width: 300px;
+  max-width: 100%;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--corner-radius-default);
+
+  .select {
+    position: relative;
+    padding: var(--gap-s);
+    width: 298px;
+    max-width: 100%;
+    border: 0;
+    color: inherit;
+    border-right: var(--gap-s) solid transparent;
+  }
+}
+
+.error {
+  composes: select_wrapper;
+  border: 1px solid var(--error-color);
+}

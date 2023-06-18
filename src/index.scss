@@ -1,0 +1,31 @@
+@import url("./assets/fonts/fonts.scss");
+@import url("./assets/styles/global.scss");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: var(--gap-default);
+  color: var(--text-main-color);
+  background-color: var(--bg-main-color);
+  font: var(--text-m-r);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+

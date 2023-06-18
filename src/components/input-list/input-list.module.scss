@@ -1,0 +1,9 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-default);
+
+  @media screen and (max-width: 768px) {
+    gap: var(--gap-s);
+  }
+}
