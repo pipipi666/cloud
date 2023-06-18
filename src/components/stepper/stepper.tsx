@@ -14,7 +14,7 @@ export const Stepper = ({ step }: TProps) => {
         {step > 1 && <div className={styles.right}></div>}
       </div>
       <ul className={styles.steps}>
-        {[...Array(STEPS_COUNT)].map((s, index) => (
+        {[...Array(STEPS_COUNT)].map((_, index) => (
           <li
             className={step >= index ? styles.active : styles.step}
             key={index}

@@ -46,14 +46,14 @@
   font: var(--text-m-b);
 
   .point {
-    background: transparent;
+    background-color: var(--default-light-color);
     border: 6px solid var(--accent-color);
   }
 }
 
 .progress {
   position: absolute;
-  width: 47.5%;
+  width: calc(50% - 16px);
   height: 100%;
   background-color: var(--accent-color);
 }
