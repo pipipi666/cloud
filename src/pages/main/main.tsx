@@ -30,11 +30,14 @@ export const MainPage = () => {
       return;
     }
     navigate(ROUTES.CREATE);
-  }, [email, emailSchema]);
+  }, [email, emailSchema, dispatch, navigate]);
 
-  const onFormChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(userFormSet({ name: e.target.name, value: e.target.value }));
-  }, []);
+  const onFormChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(userFormSet({ name: e.target.name, value: e.target.value }));
+    },
+    [dispatch]
+  );
 
   return (
     <Container>

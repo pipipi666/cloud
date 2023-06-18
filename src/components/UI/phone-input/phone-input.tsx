@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 import styles from "./phone-input.module.scss";
+/* @ts-ignore */
 import MaskedInput from "react-text-mask";
 
 type TProps = {
