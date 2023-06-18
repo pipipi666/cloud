@@ -1,6 +1,5 @@
 import { ChangeEvent, ReactNode } from "react";
 import styles from "./select.module.scss";
-import { Field, Formik } from "formik";
 
 type TProps = {
   id: string;
@@ -19,28 +18,20 @@ export const Select = ({
   onChange,
   error,
 }: TProps) => {
-  const initialValues = {};
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-    >
-      <div className={error ? styles.error : styles.select_wrapper}>
-        <select
-          className={styles.select}
-          onChange={onChange}
-          value={value}
-          name={name}
-          id={id}
-        >
-          <option value="default" disabled>
-            Не выбрано
-          </option>
-          {children}
-        </select>
-      </div>
-    </Formik>
+    <div className={error ? styles.error : styles.select_wrapper}>
+      <select
+        className={styles.select}
+        onChange={onChange}
+        value={value}
+        name={name}
+        id={id}
+      >
+        <option value="default" disabled>
+          Не выбрано
+        </option>
+        {children}
+      </select>
+    </div>
   );
 };

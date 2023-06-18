@@ -3,23 +3,23 @@ import { TUserState } from "utils/types";
 
 export const initialState: TUserState = {
   info: {
-    name: "Иван",
-    surname: "Иванов",
-    phone: "+79999999999",
-    email: "tim.jennings@example.com",
+    name: "Виталина",
+    surname: "Мингазова",
+    phone: "9134550372",
+    email: "vitalina.mingazova@yandex.ru",
   },
   media: [
     {
       name: "Telegram",
-      url: "https://github.com/",
+      url: "https://t.me/piqwerty",
     },
     {
       name: "GitHub",
-      url: "https://github.com/",
+      url: "https://github.com/pipipi666",
     },
     {
       name: "Resume",
-      url: "https://github.com/",
+      url: "https://spb.hh.ru/resume/f2b5381eff09ed493a0039ed1f357854385176",
     },
   ],
 };

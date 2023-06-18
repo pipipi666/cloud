@@ -6,7 +6,7 @@ type TProps = {
   children: ReactNode;
   type?: "filled" | "outline" | "square";
   btnType?: "button" | "submit";
-  onClick?: (e: any) => void;
+  onClick?: (e) => void;
 };
 
 export const MainButton = ({
