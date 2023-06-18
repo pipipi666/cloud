@@ -6,7 +6,7 @@ type TProps = {
   children: ReactNode;
   type?: "filled" | "outline" | "square";
   btnType?: "button" | "submit";
-  onClick?: (e: MouseEvent) => void;
+  onClick?: (e) => void;
 };
 
 export const MainButton = ({
@@ -17,12 +17,7 @@ export const MainButton = ({
   id,
 }: TProps) => {
   return (
-    <button
-      className={styles[type]}
-      id={id}
-      type={btnType}
-      onClick={() => onClick}
-    >
+    <button className={styles[type]} id={id} type={btnType} onClick={onClick}>
       {children}
     </button>
   );
