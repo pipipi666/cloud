@@ -12,12 +12,13 @@ type TProps = {
   type: string;
   title: string;
   items: TItem[];
+  role: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const InputGroup = ({ type, title, items, onChange }: TProps) => {
+export const InputGroup = ({ type, title, items, role, onChange }: TProps) => {
   return (
-    <>
+    <div role={role}>
       <p>{title}</p>
       <ul>
         {items.map((item) => (
@@ -34,6 +35,6 @@ export const InputGroup = ({ type, title, items, onChange }: TProps) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };

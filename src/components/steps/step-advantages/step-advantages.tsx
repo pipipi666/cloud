@@ -117,6 +117,7 @@ export const StepAdvantages = () => {
           type="checkbox"
           title="Checkbox group"
           items={checkboxes}
+          role="CheckboxGroup"
           onChange={onCheckboxChange}
         />
       </li>
@@ -125,6 +126,7 @@ export const StepAdvantages = () => {
           type="radio"
           title="Radio group"
           items={radios}
+          role="RadioGroup"
           onChange={onRadioChange}
         />
       </li>
