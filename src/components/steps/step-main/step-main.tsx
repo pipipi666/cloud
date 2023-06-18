@@ -11,13 +11,19 @@ export const StepMain = () => {
     (state) => state.form.formMain
   );
 
-  const onFormChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(mainFormSet({ name: e.target.name, value: e.target.value }));
-  }, []);
+  const onFormChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(mainFormSet({ name: e.target.name, value: e.target.value }));
+    },
+    [dispatch]
+  );
 
-  const onSelectChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(mainFormSet({ name: "sex", value: e.target.value }));
-  }, []);
+  const onSelectChange = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      dispatch(mainFormSet({ name: "sex", value: e.target.value }));
+    },
+    [dispatch]
+  );
 
   return (
     <InputList>

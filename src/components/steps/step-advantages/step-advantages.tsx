@@ -42,13 +42,13 @@ export const StepAdvantages = () => {
 
   const handleAddClick = useCallback(() => {
     dispatch(advantagesFormSet([...advantages, ""]));
-  }, [advantages]);
+  }, [advantages, dispatch]);
 
   const handleDeleteClick = useCallback(
     (index: number) => {
       dispatch(advantagesFormSet(advantages.filter((_, ind) => ind !== index)));
     },
-    [advantages]
+    [advantages, dispatch]
   );
 
   const onAdvChange = useCallback(
@@ -58,7 +58,7 @@ export const StepAdvantages = () => {
       arr[index - 1] = e.target.value;
       dispatch(advantagesFormSet(arr));
     },
-    [advantages]
+    [advantages, dispatch]
   );
 
   const onCheckboxChange = useCallback(
@@ -71,12 +71,15 @@ export const StepAdvantages = () => {
         )
       );
     },
-    [checks]
+    [checks, dispatch]
   );
 
-  const onRadioChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(mainFormSet({ name: e.target.name, value: e.target.value }));
-  }, []);
+  const onRadioChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(mainFormSet({ name: e.target.name, value: e.target.value }));
+    },
+    [dispatch]
+  );
 
   return (
     <InputList>

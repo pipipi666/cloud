@@ -1,6 +1,6 @@
 import styles from "./form.module.scss";
 import { useNavigate } from "react-router";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, FormEventHandler, useCallback, useState } from "react";
 import { fetchForm, mainFormSet, setError } from "services/slices/formSlice";
 import { useAppSelector, useAppDispatch, SCHEMA } from "utils";
 import {
@@ -13,6 +13,7 @@ import {
   FormField,
   Textarea,
 } from "components";
+import { Schema } from "yup";
 
 export const FormPage = () => {
   const [step, setStep] = useState(0);
@@ -27,14 +28,14 @@ export const FormPage = () => {
 
   const handlePrevClick = useCallback(() => {
     step ? setStep(step - 1) : navigate(-1);
-  }, [step]);
+  }, [step, navigate]);
 
-  const check = async (schema, value) => {
+  const check = async (schema: Schema, value: string | string[]) => {
     const res = await schema.isValid(value);
     return res;
   };
 
-  const handleNextClick = async (e) => {
+  const handleNextClick = async (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
     if (step === 2) return;
@@ -69,14 +70,13 @@ export const FormPage = () => {
   };
 
   const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
+    async (e: FormEventHandler<HTMLFormElement>) => {
       const res = await SCHEMA.ABOUT.isValid(about);
       res
         ? dispatch(fetchForm())
         : dispatch(setError({ name: "about", value: true }));
     },
-    [step, about]
+    [about, dispatch]
   );
 
   const onTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -86,7 +86,7 @@ export const FormPage = () => {
   return (
     <>
       <Container type="form">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={() => handleSubmit}>
           <Stepper step={step} />
           {step === 1 ? (
             <StepAdvantages />
